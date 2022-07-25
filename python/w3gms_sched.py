@@ -48,6 +48,7 @@ sched = [
 def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minute, end_hour, end_minute):
     
     sch_list = []
+    sch_dict = {}
     
     req = Request(url_schedule)
     html_page = urlopen(req)
@@ -55,7 +56,7 @@ def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minut
     soup = BeautifulSoup(html_page, "html")
 
     year = ''
-    for link in soup.findAll('span'):
+    for link in soup.findAll( ['span', 'p'] ): # they don't always use the 'span' tag
         str_link = str(link)
         if re_year.match( str_link ):
             year = re_year.sub('\\1', str_link)
@@ -75,7 +76,12 @@ def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minut
                 'end_hour': end_hour,
                 'end_minute': end_minute,
             }
-            sch_list.append( d )
+            # don't want dups so storing in dict with string based key
+            key = str(d['year']) + str(d['month']) + str(d['day'])
+            sch_dict[ key ] = d
+
+    # converting dict contents to a list for farther consumption
+    sch_list = list( sch_dict.values() )
     return sch_list
 
 # pull the data for each item in the configuration
