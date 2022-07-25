@@ -56,7 +56,7 @@ def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minut
     soup = BeautifulSoup(html_page, "html", "html5lib")
 
     year = ''
-    for link in soup.findAll( ['span', 'p'] ): # they don't always use the 'span' tag
+    for link in soup.find_all( ['span', 'p'] ): # they don't always use the 'span' tag
         str_link = str(link)
         if re_year.match( str_link ):
             year = re_year.sub('\\1', str_link)
