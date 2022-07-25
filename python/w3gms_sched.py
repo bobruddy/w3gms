@@ -53,7 +53,7 @@ def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minut
     req = Request(url_schedule)
     html_page = urlopen(req)
 
-    soup = BeautifulSoup(html_page, "html", features="html5lib")
+    soup = BeautifulSoup(html_page, "html", "html5lib")
 
     year = ''
     for link in soup.findAll( ['span', 'p'] ): # they don't always use the 'span' tag
