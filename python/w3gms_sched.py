@@ -7,11 +7,11 @@ from ics import Calendar, Event
 import datetime
 import pytz
 
-re_year = re.compile( '<span.+>(\d{4})<.*/span>' )
-re_night = re.compile( '.+(January|Febuary|March|April|May|June|July|August|September|October|November|Decemeber)\s+(\d+).+[^a-zA-Z]+([a-zA-Z]{1,2}\d[a-zA-Z]+).+' )
+re_year = re.compile( '<[sh].+>(202[2-9])<.*/[sh].+>' )
+re_night = re.compile( '.+(January|February|March|April|May|June|July|August|September|October|November|Decemeber)\s+(\d+).+[^a-zA-Z]+([a-zA-Z]{1,2}\d[a-zA-Z]+).+' )
 
 months = {
-    'January': 1, 'Febuary': 2, 'March': 3,
+    'January': 1, 'February': 2, 'March': 3,
     'April': 4, 'May': 5, 'June': 6,
     'July': 7, 'August': 8, 'September': 9,
     'October': 10, 'November': 11, 'Decemeber': 12
@@ -56,7 +56,7 @@ def pull_schedule(url_schedule, desc, url_desc, summary, start_hour, start_minut
     soup = BeautifulSoup(html_page, "html5lib")
 
     year = ''
-    for link in soup.find_all( ['span', 'p'] ): # they don't always use the 'span' tag
+    for link in soup.find_all( ['span', 'p', 'h1'] ): # they don't always use the 'span' tag
         str_link = str(link)
         if re_year.match( str_link ):
             year = re_year.sub('\\1', str_link)
