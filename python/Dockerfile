@@ -1,5 +1,5 @@
 # start with this baseline
-FROM alpine:edge
+FROM alpine:latest
 
 
 # upgrade pip3 and install requirements

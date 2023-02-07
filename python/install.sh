@@ -21,10 +21,11 @@ apk add py3-pip
 #apk add py3-pandas
 apk add py3-beautifulsoup4
 apk add py3-html5lib
+apk add py3-tz
 
 # install python requirements
-pip3 -q install pip --upgrade
-pip3 install -r build/requirements.txt
+#pip3 -q install pip --upgrade
+pip install -r build/requirements.txt
 
 # remove dev stuff we don't need after build
 #apk del build-base
