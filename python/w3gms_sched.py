@@ -21,11 +21,14 @@ location = 'Parksburg, PA (146.985Mhz PL 100hz)'
 ics_file = '/working/htdocs/w3gms.ics'
 debug = False
 
+# grab when i was last run so i can see in the calendar if its working
+last_updated_str = str( datetime.now( pytz.timezone('US/Eastern') ) )
+
 sched = [
     {
         'schedule': 'https://w3gmsrepeater.com/workbench-host-schedule/',
         'url': 'https://w3gmsrepeater.com/the-workbench-net/',
-        'desc': 'Amateur Radio round table focusing on technical discussion. Bring your questions and have the elmers on the w3gms repeater lend a hand. Newcomers are strongly encouraged to join the net. No question is too simple.',
+        'desc': 'Amateur Radio round table focusing on technical discussion. Bring your questions and have the elmers on the w3gms repeater lend a hand. Newcomers are strongly encouraged to join the net. No question is too simple.\n\nInformation: https://w3gmsrepeater.com/the-workbench-net/\n\nSchedule: https://w3gmsrepeater.com/workbench-host-schedule/\n\n' + last_updated_str,
         'summary': 'Workbench with: ',
         'start_hour': 20,
         'start_minute': 0,
@@ -35,7 +38,7 @@ sched = [
     {
         'schedule': 'https://w3gmsrepeater.com/round-table-host-sked/',
         'url': 'https://w3gmsrepeater.com/985-thursday-night-round-table/',
-        'desc': 'Join us every Thursday evening at 8:30pm for a Round Table qso.  This is an informal round table type QSO.  Any topic can be discussed and brought up by anyone participating.  We are looking for volunteers to take a turn hosting the weekly round table.  New check ins are always welcome and encouraged.  This is a place and time to come together and further the hobby.',
+        'desc': 'Join us every Thursday evening at 8:30pm for a Round Table qso.  This is an informal round table type QSO.  Any topic can be discussed and brought up by anyone participating.  We are looking for volunteers to take a turn hosting the weekly round table.  New check ins are always welcome and encouraged.  This is a place and time to come together and further the hobby.\n\nInformation: https://w3gmsrepeater.com/985-thursday-night-round-table/\n\nSchedule: https://w3gmsrepeater.com/round-table-host-sked/\n\n' + last_updated_str,
         'summary': 'Thursday RT with: ',
         'start_hour': 20,
         'start_minute': 30,
