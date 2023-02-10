@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import re
 from ics import Calendar, Event
-import datetime
+from datetime import datetime, timedelta
 import pytz
 
 re_year = re.compile( '<[sh].+>(202[2-9])<.*/[sh].+>' )
@@ -28,7 +28,7 @@ sched = [
     {
         'schedule': 'https://w3gmsrepeater.com/workbench-host-schedule/',
         'url': 'https://w3gmsrepeater.com/the-workbench-net/',
-        'desc': 'Amateur Radio round table focusing on technical discussion. Bring your questions and have the elmers on the w3gms repeater lend a hand. Newcomers are strongly encouraged to join the net. No question is too simple.\n\nInformation: https://w3gmsrepeater.com/the-workbench-net/\n\nSchedule: https://w3gmsrepeater.com/workbench-host-schedule/\n\n' + last_updated_str,
+        'desc': 'Amateur Radio round table focusing on technical discussion. Bring your questions and have the elmers on the w3gms repeater lend a hand. Newcomers are strongly encouraged to join the net. No question is too simple.\n\nInformation: https://w3gmsrepeater.com/the-workbench-net/\n\nSchedule: https://w3gmsrepeater.com/workbench-host-schedule/\n\nUpdated: ' + last_updated_str,
         'summary': 'Workbench with: ',
         'start_hour': 20,
         'start_minute': 0,
@@ -38,7 +38,7 @@ sched = [
     {
         'schedule': 'https://w3gmsrepeater.com/round-table-host-sked/',
         'url': 'https://w3gmsrepeater.com/985-thursday-night-round-table/',
-        'desc': 'Join us every Thursday evening at 8:30pm for a Round Table qso.  This is an informal round table type QSO.  Any topic can be discussed and brought up by anyone participating.  We are looking for volunteers to take a turn hosting the weekly round table.  New check ins are always welcome and encouraged.  This is a place and time to come together and further the hobby.\n\nInformation: https://w3gmsrepeater.com/985-thursday-night-round-table/\n\nSchedule: https://w3gmsrepeater.com/round-table-host-sked/\n\n' + last_updated_str,
+        'desc': 'Join us every Thursday evening at 8:30pm for a Round Table qso.  This is an informal round table type QSO.  Any topic can be discussed and brought up by anyone participating.  We are looking for volunteers to take a turn hosting the weekly round table.  New check ins are always welcome and encouraged.  This is a place and time to come together and further the hobby.\n\nInformation: https://w3gmsrepeater.com/985-thursday-night-round-table/\n\nSchedule: https://w3gmsrepeater.com/round-table-host-sked/\n\nUpdated: ' + last_updated_str,
         'summary': 'Thursday RT with: ',
         'start_hour': 20,
         'start_minute': 30,
@@ -100,10 +100,10 @@ i=1
 for rt in rt_list:
     e = Event()
     e.name = rt['name']
-    e.begin = datetime.datetime(rt['year'], rt['month'], rt['day'], rt['start_hour'], rt['start_minute'], 0, tzinfo=pytz.timezone('US/Eastern'))
-    e.end = datetime.datetime(rt['year'], rt['month'], rt['day'], rt['end_hour'], rt['end_minute'], 0, tzinfo=pytz.timezone('US/Eastern'))
+    e.begin = datetime(rt['year'], rt['month'], rt['day'], rt['start_hour'], rt['start_minute'], 0, tzinfo=pytz.timezone('US/Eastern'))
+    e.end = datetime(rt['year'], rt['month'], rt['day'], rt['end_hour'], rt['end_minute'], 0, tzinfo=pytz.timezone('US/Eastern'))
     e.location = location
-    e.url = rt['url']
+    #e.url = rt['url']
     e.description = rt['desc']
     e.organizer = 'bob@ruddy.net'
     if i == 1:
